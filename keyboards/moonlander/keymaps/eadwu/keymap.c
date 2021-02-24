@@ -171,16 +171,29 @@ void rgb_matrix_indicators_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  /* `MOD_MASK_SHIFT` is basically `KC_LSHIFT | KC_RSHIFT` */
+  uint8_t shifted_mask = get_mods () & MOD_MASK_SHIFT;
+
   switch (keycode) {
     case ST_MACRO_0:
     if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_LBRACKET) SS_DELAY(100) SS_TAP(X_RBRACKET) SS_DELAY(100) SS_TAP(X_LEFT));
+      tap_code (KC_LBRACKET);
+      tap_code (KC_RBRACKET);
+      /* Disable shift to integrate with `{`. */
+      unregister_mods (MOD_MASK_SHIFT);
+      tap_code (KC_LEFT);
+      register_mods (shifted_mask);
 
     }
     break;
     case ST_MACRO_1:
     if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_QUOTE) SS_DELAY(100) SS_TAP(X_QUOTE) SS_DELAY(100) SS_TAP(X_LEFT));
+      tap_code (KC_QUOT);
+      tap_code (KC_QUOT);
+      /* Disable shift to integrate with `"`. */
+      unregister_mods (MOD_MASK_SHIFT);
+      tap_code(KC_LEFT);
+      register_mods (shifted_mask);
 
     }
     break;
