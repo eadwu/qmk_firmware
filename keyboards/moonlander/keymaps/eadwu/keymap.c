@@ -602,9 +602,9 @@ void dance_7_finished(qk_tap_dance_state_t *state, void *user_data) {
     dance_state.step = dance_7_dance_step(state);
     switch (dance_state.step) {
         case SINGLE_TAP: register_code16(KC_F11); break;
-        case SINGLE_HOLD: register_code16(KC_AUDIO_VOL_DOWN); break;
+        case SINGLE_HOLD: register_code16(KC_BRIGHTNESS_DOWN); break;
         case DOUBLE_TAP: register_code16(KC_F11); register_code16(KC_F11); break;
-        case DOUBLE_HOLD: register_code16(KC_AUDIO_VOL_DOWN); break;
+        case DOUBLE_HOLD: register_code16(KC_BRIGHTNESS_DOWN); break;
         case DOUBLE_SINGLE_TAP: tap_code16(KC_F11); register_code16(KC_F11);
     }
 }
@@ -613,9 +613,9 @@ void dance_7_reset(qk_tap_dance_state_t *state, void *user_data) {
     wait_ms(10);
     switch (dance_state.step) {
         case SINGLE_TAP: unregister_code16(KC_F11); break;
-        case SINGLE_HOLD: unregister_code16(KC_AUDIO_VOL_DOWN); break;
+        case SINGLE_HOLD: unregister_code16(KC_BRIGHTNESS_DOWN); break;
         case DOUBLE_TAP: unregister_code16(KC_F11); break;
-        case DOUBLE_HOLD: unregister_code16(KC_AUDIO_VOL_DOWN); break;
+        case DOUBLE_HOLD: unregister_code16(KC_BRIGHTNESS_DOWN); break;
         case DOUBLE_SINGLE_TAP: unregister_code16(KC_F11); break;
     }
     dance_state.step = 0;
@@ -651,9 +651,9 @@ void dance_8_finished(qk_tap_dance_state_t *state, void *user_data) {
     dance_state.step = dance_8_dance_step(state);
     switch (dance_state.step) {
         case SINGLE_TAP: register_code16(KC_F12); break;
-        case SINGLE_HOLD: register_code16(KC_AUDIO_VOL_UP); break;
+        case SINGLE_HOLD: register_code16(KC_BRIGHTNESS_UP); break;
         case DOUBLE_TAP: register_code16(KC_F12); register_code16(KC_F12); break;
-        case DOUBLE_HOLD: register_code16(KC_AUDIO_VOL_UP); break;
+        case DOUBLE_HOLD: register_code16(KC_BRIGHTNESS_UP); break;
         case DOUBLE_SINGLE_TAP: tap_code16(KC_F12); register_code16(KC_F12);
     }
 }
@@ -662,9 +662,9 @@ void dance_8_reset(qk_tap_dance_state_t *state, void *user_data) {
     wait_ms(10);
     switch (dance_state.step) {
         case SINGLE_TAP: unregister_code16(KC_F12); break;
-        case SINGLE_HOLD: unregister_code16(KC_AUDIO_VOL_UP); break;
+        case SINGLE_HOLD: unregister_code16(KC_BRIGHTNESS_UP); break;
         case DOUBLE_TAP: unregister_code16(KC_F12); break;
-        case DOUBLE_HOLD: unregister_code16(KC_AUDIO_VOL_UP); break;
+        case DOUBLE_HOLD: unregister_code16(KC_BRIGHTNESS_UP); break;
         case DOUBLE_SINGLE_TAP: unregister_code16(KC_F12); break;
     }
     dance_state.step = 0;
