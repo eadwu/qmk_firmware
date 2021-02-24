@@ -1,0 +1,43 @@
+name: moonlander firmware
+
+on:
+  push:
+
+jobs:
+  remove-old-artifacts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Remove old artifacts
+        uses: c-hive/gha-remove-artifacts@v1.2.0
+        with:
+          age: '1 day'
+          skip-recent: 4
+          GITHUB_TOKEN: ${{ github.token }}
+
+  build:
+    needs: remove-old-artifacts
+    runs-on: ubuntu-latest
+    timeout-minutes: 720
+    strategy:
+      fail-fast: false
+
+    steps:
+      - name: install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install gcc unzip wget zip gcc-avr binutils-avr \
+            avr-libc dfu-programmer dfu-util gcc-arm-none-eabi \
+            binutils-arm-none-eabi libnewlib-arm-none-eabi
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: configure QMK
+        run: |
+          util/qmk_install.sh
+      - run: make git-submodule && make moonlander:eadwu
+      - uses: actions/upload-artifact@v2
+        with:
+          name: moonlander.bin
+          path: |
+            moonlander_eadwu.bin
